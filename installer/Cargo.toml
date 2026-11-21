@@ -1,0 +1,34 @@
+[package]
+name = "clutchcore-setup"
+version = "1.0.4"
+edition = "2021"
+description = "Installer for Clutchcore"
+build = "build.rs"
+
+[workspace]
+
+[[bin]]
+name = "ClutchcoreSetup"
+path = "src/main.rs"
+
+[dependencies]
+eframe = { version = "0.29", default-features = false, features = ["glow", "default_fonts"] }
+miniz_oxide = "0.8"
+winreg = "0.52"
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Com",
+    "Win32_System_Com_StructuredStorage",
+    "Win32_UI_Shell",
+    "Win32_UI_Shell_Common",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[build-dependencies]
+miniz_oxide = "0.8"
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+strip = true
